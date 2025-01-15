@@ -2,14 +2,14 @@ pipeline {
     agent any
 
     stages {
-        stage('Build and Test') {
-            steps {
-                script {
-                    sh "mvn clean package"
-                }
-            }
+        stage("Build") {
+          steps {
+            git url: 'https://github.com/sunilsinare/demo'
+            withMaven {
+              sh "mvn clean install"
+            } // withMaven will discover the generated Maven artifacts, JUnit Surefire & FailSafe reports and FindBugs reports
+          }
         }
-
         stage('Build Docker Image') {
             steps {
                 script {
