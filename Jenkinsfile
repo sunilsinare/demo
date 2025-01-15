@@ -1,14 +1,13 @@
 pipeline {
     agent any
+
     stages {
         stage('Checkout') {
-            steps {
-                git credentialsId: 'a8948eea-cb0d-4a6f-a2f3-4ddf0b23d1b1',
-                    url: 'https://github.com/sunilsinare/demo'
+                steps {
+                    git credentialsId: 'a8948eea-cb0d-4a6f-a2f3-4ddf0b23d1b1',
+                        url: 'https://github.com/sunilsinare/demo'
+                }
             }
-        }
-    }
-    stages {
         stage("Build") {
           steps {
             git credentialsId: 'a8948eea-cb0d-4a6f-a2f3-4ddf0b23d1b1',
