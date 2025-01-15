@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment # Kubernetes resource kind we are creating
+metadata:
+  name: spring-boot-k8s-yaml
+spec:
+  selector:
+    matchLabels:
+      app: spring-boot-k8s-yaml
+  replicas: 1 # Number of replicas that will be created for this deployment
+  template:
+    metadata:
+      labels:
+        app: spring-boot-k8s-yaml
+    spec:
+      containers:
+        - name: spring-boot-k8s
+          image: demospringbootk8syaml:1.0
+          # Image that will be used to containers in the cluster
+          imagePullPolicy: Never
+          stdin: true
+          tty: true
+          ports:
+            - containerPort: 8080
