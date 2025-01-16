@@ -4,12 +4,14 @@ pipeline {
     stages {
         stage('Checkout') {
                 steps {
-                    git 'https://github.com/raghav-bhardwaj/python'
+                    git credentialsId: 'a8948eea-cb0d-4a6f-a2f3-4ddf0b23d1b1',
+                        url: 'https://github.com/sunilsinare/demo'
                 }
          }
         stage("Build") {
           steps {
-            git 'https://github.com/sunilsinare/demo'
+            git credentialsId: 'a8948eea-cb0d-4a6f-a2f3-4ddf0b23d1b1',
+                url: 'https://github.com/sunilsinare/demo'
             withMaven {
               sh "mvn clean install"
             } // withMaven will discover the generated Maven artifacts, JUnit Surefire & FailSafe reports and FindBugs reports
